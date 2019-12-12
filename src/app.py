@@ -32,3 +32,10 @@ def add():
 
     Database.add_instance(Cats, name=name, price=price, breed=breed)
     return json.dumps("Added"), 200
+
+
+@app.route('/remove/<cat_id>', methods=['DELETE'])
+def remove(cat_id):
+    Database.delete_instance(Cats, id=cat_id)
+    return json.dumps("Deleted"), 200
+
