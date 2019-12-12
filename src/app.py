@@ -22,3 +22,13 @@ def fetch():
 
         all_cats.append(new_cat)
     return json.dumps(all_cats), 200
+
+@app.route('/add', methods=['POST'])
+def add():
+    data = request.get_json()
+    name = data['name']
+    price = data['price']
+    breed = data['breed']
+
+    Database.add_instance(Cats, name=name, price=price, breed=breed)
+    return json.dumps("Added"), 200
